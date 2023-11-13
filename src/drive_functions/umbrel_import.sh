@@ -6,7 +6,7 @@ set_terminal ; echo -e "
 $cyan
                              UMBREL DRIVE MIGRATE TOOL
 $orange
-    This program will convert your Umbrel external drive to make it compatible with
+    This tool will convert your Umbrel external drive to make it compatible with
     Parmanode, preserving any Bitcoin block data that you may have already sync'd up.
 
     Simply use this convert tool, and plug into any Parmanode computer (ParmanodL). 
@@ -14,8 +14,8 @@ $orange
     \"import\" the drive on that computer as well - there is a \"Import to Parmnaode\"
     option in the tools menu.
 
-    If you wish to go back to Umbrel, then use the \"Revert to Umbrel\" tool, otherwise
-    the drive won't work properly.
+    If you wish to go back to Umbrel, then use the \"Revert to Umbrel\" tool, 
+    otherwise the drive won't work properly.
 $pink
     Lightning channels are not migrated. At present, it has not been tested if your
     lighning channles are safe to leave. Either close your channels if you have them,
@@ -26,11 +26,12 @@ $pink
 choose "eq" ; read choice
 case $choice in q|Q|P|p) return 1 ;; *) true ;; esac
 
+if [[ $importdrive != true ]] ; then
 while sudo mount | grep -q parmanode ; do 
 set_terminal ; echo -e "
 ########################################################################################
     
-    This function will$cyan refuse to run$orange if it detects an existing mounted 
+    This tool will$cyan refuse to run$orange if it detects an existing mounted 
     or even connected Parmanode drive. Bad things can happen. 
 
     If you want to continue, make sure any programs syncing to the drive (Bitcoin, or
@@ -57,7 +58,7 @@ safe_unmount_parmanode || return 1
 *) invalid ;;
 esac
 done
-
+fi #end importdrive != true
 
 while sudo blkid | grep -q parmanode ; do
 set_terminal ; echo -e "
@@ -67,7 +68,7 @@ set_terminal ; echo -e "
 
             Hit a and then <enter> to abort.
 
-            Hit <enter> once disconnected.
+            Hit <enter> once physically disconnected.
 
 ########################################################################################
 "
@@ -162,13 +163,19 @@ set_terminal ; echo -e "
 ########################################################################################
 
     The drive data has been adjusted such that it can be used by Parmanode. It's
-    label has been changed from$cyan umbrel to parmanode${orange}.
+    label has been changed from$cyan umbrel$orange to$cyan parmanode${orange}.
 
     The drive can still be used by Umbrel - swap over at your leisure, but you do
     first need to use the Parmanode \"revert\" tool first.
 
 ########################################################################################
 " ; enter_continue ; set_terminal
+
+########################################################################################
+########################################################################################
+if [[ $importdrive == true ]] ; then return 0 ; fi
+########################################################################################
+########################################################################################
 
 #Conenct drive to Bitcoin Core
 source $HOME/.parmanode/parmanode.conf

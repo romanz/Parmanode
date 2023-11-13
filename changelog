@@ -1,5 +1,10 @@
+Version 3.17.0 -- November 12
+    -Tor Relay
+    -Option to import a drive from Parmanode/Umbrel/MyNode/RaspiBlitz at time
+     of Bitcoin install.
 Version 3.16.2 -- 11th November
     -LND Tor improvements
+    -RTL wallet accessible via Tor
 Version 3.16.1 -- 9th November
     -Removed Apple file system formatting for better compatibility. Drives
        now format with exFAT, and can be imported to Linux.

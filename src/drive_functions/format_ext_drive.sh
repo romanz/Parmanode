@@ -1,9 +1,11 @@
 function format_ext_drive {
-if [[ $skip_formatting == true ]] ; then return 0 ; fi
+if [[ $skip_formatting == true ]] ; then 
+log "importdrive" "skipped formatting" ; return 0 ; fi
 #quit if internal drive chosen
 if [[ $1 == "Bitcoin" && $drive == "internal" ]] ; then return 0 ; fi
 if [[ $1 == "Fulcrum" && $drive_fulcrum == "internal" ]] ; then return 0 ; fi
 if [[ $1 == "electrs" && $drive_electrs == "internal" ]] ; then return 0 ; fi
+
 
 #quit if external drive set for either of the other programs that use this function
 #parenteses added once for readability, but not required as && takes precedence over || ,so logic doesn't change
@@ -34,6 +36,8 @@ fi
 fi
 
 if [[ $OS == "Linux" ]] ; then partition_drive ; fi   # Partition step not required for Mac
+
+
 
 #Format the drive
 if [[ $OS == "Mac" ]] ; then

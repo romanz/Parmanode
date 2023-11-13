@@ -1,6 +1,6 @@
 function menu_main {
 while true ; do
-set_terminal_bit_higher #custom function to resize the window
+set_terminal_custom 50
 source $original_dir/version.conf >/dev/null
 if [[ $vPatch -gt 9 ]] ; then space="" else space =" " ; fi
 # if statements in the menu printout makes the menu dynamic, ie changes accoring to the
@@ -40,6 +40,8 @@ echo -e "
 #    (uninstall)          Uninstall Parmanode  ........ (Who'd do such a thing?)       #
 #                                                                                      #
 #    (ap)                 About Parmanode                                              #
+#                                                                                      #
+#$green    NEW: Run a Tor Relay! See add --> other --> Tor Relay                         $orange    #
 #                                                                                      #
 ########################################################################################
 
