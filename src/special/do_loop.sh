@@ -77,7 +77,7 @@ source $HOME/.parmanode/parmanode.conf >/dev/null 2>&1
 fi ) &
 
 #add to run count
-rp_count
+#rp_count
 
 ########################################################################################
 #Intro
@@ -111,17 +111,17 @@ fi
    
 
 #patches ; each patch adds variable to parmanode.conf, sourced higher up
-case $patch in
-1) 
-patch_2 ; patch_3 ;;
-2)
-patch_3 ;;
-3)
-true ;;
-*) 
-patch_1 ; patch_2 ; patch_3 ;; 
-esac
-debug "look"
+# case $patch in
+# 1) 
+# patch_2 ; patch_3 ;;
+# 2)
+# patch_3 ;;
+# 3)
+# true ;;
+# *) 
+# patch_1 ; patch_2 ; patch_3 ;; 
+# esac
+# debug "look"
 
 get_ip_address #function to put the IP address of the computer in memory.
 
